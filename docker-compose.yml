@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  # Database
+  database:
+    image: database
+    build: ./backend/database
+    volumes:
+      - ./backend/database/data:/data/db
+    restart: always
+    networks:
+      - back
+
+  # API
+  api:
+    image: api
+    build: ./backend/api
+    volumes:
+      - ./backend/api/public:/user/src/app/public
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - front
+      - back
+
+  # Web - Single Page Application
+  web:
+    image: web
+    build: ./frontend/app/web
+    restart: always
+    depends_on:
+      - api
+    networks:
+      - front
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge
