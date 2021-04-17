@@ -1,9 +1,7 @@
-FROM node:14
-RUN mkdir -p /user/src/app
-WORKDIR /user/src/app
-COPY ./package*.json ./
+FROM node:14-slim
+WORKDIR /src
+ADD package*.json /src
 RUN npm install --quiet
-COPY . ./
-# RUN npm run start:index
-EXPOSE 8000
-ENTRYPOINT ["node", "index.js"]
+ADD . /src
+EXPOSE 8080
+CMD ["npm", "start"]

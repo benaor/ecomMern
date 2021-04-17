@@ -2,58 +2,42 @@ version: '3'
 
 services:
   # Database
-  database:
-    image: database
-    build: ./backend/database
-    volumes:
-      - ./backend/database/data:/data/db
-    # restart: always
-    networks:
-      - back
+  # database:
+  #   image: database
+  #   build: ./backend/database
+  #   volumes:
+  #     - ./backend/database/data:/data/db
+  #   networks:
+  #     - back
 
   # API
   api:
     image: api
     build: ./backend/api
+    command: npx nodemon backend/api/index.js
     volumes:
-      - ./backend/api:/user/src/app
-    # restart: always
-    depends_on:
-      - database
+      - ./backend/api:/src
+      - nodemodules:/src/node_modules
+    ports:
+      - 8080:8080
     networks:
       - front
       - back
 
-  # Proxy
-  proxy:
-    image: nginx
-    volumes:
-      - ./backend/proxy/nginx.conf:/etc/nginx/conf.d/proxy.conf
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - database
-      - api
-    networks:
-      - front
-      - docker-network
-
   # Web - Single Page Application
-  web:
-    image: web
-    build: ./frontend/app/web
-    # restart: always
-    depends_on:
-      - api
-    networks:
-      - front
+  # web:
+  #   image: web
+  #   build: ./frontend/app/web
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - front
 
 networks:
   front:
     driver: bridge
   back:
     driver: bridge
-  docker-network:
-    driver: bridge
+
+volumes:
+  nodemodules: {}
