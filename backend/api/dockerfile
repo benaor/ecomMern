@@ -4,4 +4,3 @@ ADD package*.json /src
 RUN npm install --quiet
 ADD . /src
 EXPOSE 8080
-CMD ["npm", "start"]
