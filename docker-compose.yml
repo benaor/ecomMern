@@ -17,12 +17,10 @@ services:
     command: npx nodemon backend/api/index.js
     volumes:
       - ./backend/api:/src
-      - nodemodules:/src/node_modules
+      - nodemodules-api:/src/node_modules
     ports:
       - 8080:8080
-    networks:
-      - front
-      - back
+
 
   # Web - Single Page Application
   # web:
@@ -40,4 +38,4 @@ networks:
     driver: bridge
 
 volumes:
-  nodemodules: {}
+  nodemodules-api: {}
