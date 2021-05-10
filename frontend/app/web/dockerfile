@@ -1,9 +1,7 @@
 FROM node:latest
-RUN mkdir -p /user/src/app
-WORKDIR /user/src/app
-COPY ./package*.json ./
-RUN npm install --quiet
-RUN npm install -g serve
-COPY . ./
-EXPOSE 5000
-ENTRYPOINT ["serve", "-s", "build", "-p", "5000"]
+WORKDIR /app
+ADD package.json /app
+RUN yarn install
+ADD . /app
+EXPOSE 3000
+CMD [ "yarn", "start"]
