@@ -16,12 +16,12 @@ services:
   web:
     image: web
     build: ./frontend/app/web
-    command: yarn run start
+    command: npm run start
     ports:
       - 3000:3000
     volumes:
-      - ./frontend/app/web:/app
-      # - nodemodules-web:/app/node_modules
+      - ./frontend/app/web:/usr/src/app
+      # - nodemodules-web:/usr/src/app/node_modules
 
 volumes:
   nodemodules-api: {}
