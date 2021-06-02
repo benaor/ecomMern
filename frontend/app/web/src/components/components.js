@@ -6,7 +6,7 @@ export function Table({children, items = [], heading, subheading}) {
                     <div className="col-md-8 offset-2">
                     <h3 className="display-5 mb-2 text-center">{heading}</h3>
                     <p className="mb-5 text-center">
-                        <i className="text-info font-weight-bold">{items?.length}</i> {subheading}</p>
+                        <i className="text-info font-weight-bold">{items.length}</i> {subheading}</p>
                     <table id="shoppingCart" className="table table-condensed table-responsive">
                     <thead>
                         <tr>

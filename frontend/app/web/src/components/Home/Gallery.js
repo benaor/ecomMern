@@ -19,8 +19,10 @@ function Gallery({ category }) {
     variables: { category: category },
   });
 
-  const productsWithFilters = () => {
-    if (!filtersChecked.length) return data?.products;
+  const productWithFilters = () => {
+    if (!filtersChecked.length) {
+      return data?.products;
+    }
     filtersChecked.forEach((filter) => {
       array = [
         ...array,
@@ -31,19 +33,17 @@ function Gallery({ category }) {
     });
     return array;
   };
+  if (loading) return <div>loading ...</div>;
+  if (error) return <div>sorry an error occured {error}</div>;
+  if (!data) return <div>No data !</div>;
 
-  if (loading) return <div>Loading ... </div>;
-  if (error) return <div>Sorry an error occured {error} </div>;
-  if (!data) return <div>No data ! </div>;
-
-  const products = productsWithFilters();
-
+  const products = productWithFilters();
   return (
     <div className="col-md-8 order-md-2 col-lg-9">
       <div className="container-fluid" style={styles.gallery}>
         <div className="row">
-          {products.map((product) => (
-            <Card product={product} />
+          {products.map((product, index) => (
+            <Card key={index} product={product} />
           ))}
         </div>
       </div>

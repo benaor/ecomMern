@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-import App from "./App";
-import FiltersProvider from "./context";
 import { Provider } from "react-redux";
 import { store } from "./lib/redux/reducers";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import FiltersProvider from "./context";
+import App from "./App";
 
-var client = new ApolloClient({
+const client = new ApolloClient({
   uri: "http://localhost:8080/graphql",
   cache: new InMemoryCache(),
 });

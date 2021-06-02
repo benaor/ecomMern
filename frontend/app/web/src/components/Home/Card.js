@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Card({product}) {
+function Card({ product }) {
   const { id, name, price } = product;
 
   return (
@@ -19,7 +19,7 @@ function Card({product}) {
             <Link
               to={{
                 pathname: "/product",
-                props: { product }, 
+                props: { product },
               }}
               className=" font-weight-bold text-dark text-uppercase small"
             >

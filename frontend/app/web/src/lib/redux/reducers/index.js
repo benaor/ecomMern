@@ -3,7 +3,9 @@ import { createStore } from "redux";
 function reducer(state = { items: [] }, action) {
   switch (action.type) {
     case "ADD_TO_CART":
-      return state;
+      return {
+        items: [...state.items, action.payload.item]
+      }
 
     default:
       return state;
@@ -17,4 +19,7 @@ export function addToCart(item) {
   };
 }
 
-export const store = createStore(reducer)
+export const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);

@@ -8,8 +8,8 @@ const FiltersProvider = ({ children }) => {
   const filters = ["Top", "Bottom", "Jacket"];
 
   //UseStates
-  const [category, setCategory] = React.useState(categories[0].toLowerCase());
-  const [filtersChecked, setFiltersChecked] = React.useState({
+  const [category, setCategory] = useState(categories[0].toLowerCase());
+  const [filtersChecked, setFiltersChecked] = useState({
     Top: false,
     Bottom: false,
     Jacket: false,
